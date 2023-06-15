@@ -20,27 +20,28 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('nom',TextType::class,[
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control mt-3'],
                 'label' => 'Nom'
             ])
             ->add('prenom',TextType::class,[
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control mt-3'],
                 'label' => 'Prenom'
             ])
             ->add('email',EmailType::class,[
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control mt-3'],
                 'label' => 'E-mail'
             ])
             ->add('adresse',TextType::class,[
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control mt-3'],
                 'label' => 'Adresse'
             ])
             ->add('ville',TextType::class,[
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control mt-3'],
                 'label' => 'Ville'
             ])
             ->add('RGPDConsent', CheckboxType::class, [
                 'mapped' => false,
+                'attr' => ['class' => 'mt-3'],
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
@@ -52,7 +53,10 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                    'class' => 'form-control mt-3',
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',

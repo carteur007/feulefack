@@ -44,6 +44,9 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type:'datetime_immutable',options:['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(type: 'boolean',nullable: 'false')]
+    private ?bool $isActived = false;
+
     public function __construct() {
         $this->createdAt = new \DateTimeImmutable();
     }
@@ -173,6 +176,18 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getIsActived(): ?bool
+    {
+        return $this->isActived;
+    }
+
+    public function setIsActived(bool $isActived): static
+    {
+        $this->isActived = $isActived;
 
         return $this;
     }
