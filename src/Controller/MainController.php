@@ -1,18 +1,24 @@
 <?php
-
 namespace App\Controller;
 
+use App\Repository\PackCVRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class MainController extends AbstractController
 {
-    #[Route('/', name: 'app_main')]
-    public function index(): Response
+    #[Route('/', name: 'app_home')]
+    public function index(
+        PackCVRepository $packcvrepo,
+    ): Response
     {
+        $pack_c_vs = $packcvrepo->findAll();
+        // on envoi les pack de cv
         return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
+            'pack_c_vs' => $pack_c_vs,
         ]);
     }
 }

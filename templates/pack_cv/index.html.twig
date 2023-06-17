@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PackCV index{% endblock %}
+
+{% block body %}
+    <h1>PackCV index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Intitule</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pack_c_v in pack_c_vs %}
+            <tr>
+                <td>{{ pack_c_v.id }}</td>
+                <td>{{ pack_c_v.intitule }}</td>
+                <td>{{ pack_c_v.prix }}</td>
+                <td>
+                    <a href="{{ path('app_pack_c_v_show', {'id': pack_c_v.id}) }}">show</a>
+                    <a href="{{ path('app_pack_c_v_edit', {'id': pack_c_v.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pack_c_v_new') }}">Create new</a>
+{% endblock %}

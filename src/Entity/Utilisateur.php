@@ -4,12 +4,16 @@ namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\InheritanceType;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[ORM\InheritanceType('JOINED')]
+#[ORM\DiscriminatorColumn(name: 'discr', type: 'string')]
+#[ORM\DiscriminatorMap(['utilisateur' => Utilisateur::class,'employeur' => Employeur::class, 'candidat' => Candidat::class])]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -190,5 +194,10 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isActived = $isActived;
 
         return $this;
+    }
+
+    public function isIsActived(): ?bool
+    {
+        return $this->isActived;
     }
 }

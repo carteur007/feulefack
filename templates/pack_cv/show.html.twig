@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PackCV{% endblock %}
+
+{% block body %}
+    <h1>PackCV</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pack_c_v.id }}</td>
+            </tr>
+            <tr>
+                <th>Intitule</th>
+                <td>{{ pack_c_v.intitule }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ pack_c_v.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pack_c_v_index') }}">back to list</a>
+
+    <a href="{{ path('app_pack_c_v_edit', {'id': pack_c_v.id}) }}">edit</a>
+
+    {{ include('pack_cv/_delete_form.html.twig') }}
+{% endblock %}

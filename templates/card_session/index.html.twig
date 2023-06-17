@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compte{% endblock %}
+
+{% block body %}
+<div class="pricing-table-title">
+    <h2>Packs CV</h2>
+</div>
+<class="row" style="display: flex;align-content: center;justify-content: space-between;">
+    {{ render(controller('App\\Controller\\MainController::index')) }}
+{% for pack_c_v in pack_c_vs %}
+<div class="pricing-table table-3">
+    <div class="ptable-item">
+        <div class="ptable-single">
+            
+            <div class="ptable-header">
+                <div class="ptable-title">
+                    <h2>Silver</h2>
+                </div>
+                <div class="ptable-price">
+                    <h2><small>$</small>{{ pack_c_v.prix }}<span>/ M</span></h2>
+                </div>
+            </div>
+            <div class="ptable-body">
+                <div class="ptable-description">
+                    <ul>
+                        <li>{{ pack_c_v.intitule }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ptable-footer">
+                <div class="ptable-action">
+                    <a href="{{ path('app_card_add', {'id': pack_c_v.id}) }}"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+
+    <div class="pricing-table table-3">
+        <div class="ptable-item">
+            <div class="ptable-single">
+                
+                <div class="ptable-header">
+                    <div class="ptable-title">
+                        <h2>Silver</h2>
+                    </div>
+                    <div class="ptable-price">
+                        <h2><small>$</small>00<span>/ M</span></h2>
+                    </div>
+                </div>
+                <div class="ptable-body">
+                    <div class="ptable-description">
+                        <ul>
+                            <li>no records found</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="ptable-footer">
+                {# 
+                    <div class="ptable-action">
+                        <a href="{{ path('app_card_add', {'id': pack_c_v.id}) }}"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
+                    </div>
+                    #}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

@@ -28,6 +28,28 @@
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link" role="button">
+            <button onclick="openNav()" class="btn position top-1 translate-middle badge rounded-pill bg-success" type="button" style="cursor:pointer; border: 0cap; margin-top: 10px;">
+              3          
+              <span class="badge rounded-pill text-bg-light">
+                <i class="bi bi-cart-check" style="font-size: 1.7rem; color: rgb(204, 108, 233);"></i>
+              </span>
+            </button>            
+          </a>
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+              <span class="badge rounded-pill text-bg-danger">
+                <i class="bi bi-cart-x" style="font-size: 1.5rem; color: rgb(241, 240, 247);"></i>
+              </span>
+            </a>
+            <!-- Offcanvas card  { include('card_session/card.html.twig',{datapanier}} ) }}-->
+        {% include "card_session/card.html.twig" %} 
+        {{ render(controller('App\\Controller\\CardSessionController::index')) }}
+            <!-- Fin Card -->
+          </div>
+        </li>
         <li class="nav-item">
               <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
